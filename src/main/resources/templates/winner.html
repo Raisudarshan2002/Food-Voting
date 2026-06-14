@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Winner</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>🏆 Most Liked Food</h1>
+
+<div class="food-grid" th:if="${winner != null}">
+    <div class="food-card winner-card">
+        <img th:src="@{${winner.imagePath}}" th:alt="${winner.name}"/>
+        <div class="food-card-body">
+            <h3 th:text="${winner.name}"></h3>
+            <p th:text="${winner.description}"></p>
+            <p><strong>👍 Likes:</strong> <span th:text="${winner.upvotes}"></span></p>
+        </div>
+    </div>
+</div>
+
+<p th:if="${winner == null}" style="text-align:center;">No food items yet!</p>
+
+<div class="back-link">
+    <a href="/">← Back to Home</a>
+</div>
+</body>
+</html>

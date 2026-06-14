@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Food</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Upload Food</h1>
+<form class="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+    <label>Name</label>
+    <input type="text" name="name" required/>
+
+    <label>Description</label>
+    <textarea name="description" rows="4" required></textarea>
+
+    <label>Image</label>
+    <input type="file" name="image" accept="image/*" required/>
+
+    <button type="submit">Upload</button>
+</form>
+<div class="back-link">
+    <a href="/">← Back to Home</a>
+</div>
+</body>
+</html>

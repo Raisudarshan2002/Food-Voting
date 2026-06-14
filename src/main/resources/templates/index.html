@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Voting App</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>🍔 Vote Best Food</h1>
+
+<div class="upload-link">
+    <a href="/upload">+ Upload New Food</a>
+    <a href="/winner">🏆 View Winner</a>
+</div>
+
+<div class="food-grid">
+    <div class="food-card" th:each="food : ${foods}">
+        <img th:src="@{${food.imagePath}}" th:alt="${food.name}"/>
+        <div class="food-card-body">
+            <h3 th:text="${food.name}"></h3>
+            <p th:text="${food.description}"></p>
+            <div class="vote-buttons">
+                <form th:action="@{/food/{id}/upvote(id=${food.id})}" method="post">
+                    <button type="submit" class="upvote">👍 <span th:text="${food.upvotes}"></span></button>
+                </form>
+                <form th:action="@{/food/{id}/downvote(id=${food.id})}" method="post">
+                    <button type="submit" class="downvote">👎 <span th:text="${food.downvotes}"></span></button>
+                </form>
+                <form th:action="@{/food/{id}/delete(id=${food.id})}" method="post"
+                      onsubmit="return confirm('Delete this item?');">
+                    <button type="submit" class="delete">🗑️</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
